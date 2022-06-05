@@ -1,11 +1,13 @@
 const polka = require("polka");
 const ping = require("ping");
+const cors = require("cors");
 
 const app = polka();
 
 const ONE_MINUTE = 60 * 1000;
 const serverCache = {};
 
+app.use(cors());
 app.get("/server/:ip", async (req, res) => {
   const { ip } = req.params;
 
