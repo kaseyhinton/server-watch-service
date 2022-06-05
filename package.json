@@ -1,0 +1,15 @@
+{
+  "name": "server-watch-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ping": "^0.4.2",
+    "polka": "^0.5.2"
+  }
+}
