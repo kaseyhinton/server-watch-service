@@ -1,6 +1,6 @@
 const polka = require("polka");
-const ping = require("ping");
 const cors = require("cors");
+var tcpp = require("tcp-ping");
 
 const app = polka();
 
@@ -14,24 +14,18 @@ app.get("/server/:ip", async (req, res) => {
   if (serverCache?.[ip]) {
     const lastPing = serverCache?.[ip];
     if (new Date() - new Date(lastPing?.date) < ONE_MINUTE) {
-      console.log("serving status from cache");
       res.end(lastPing?.status ?? "Error");
     }
   }
 
-  const result = await ping.promise.probe(ip, {
-    timeout: 10,
-    extra: ["-i", "2"],
+  tcpp.ping({ address: ip, attempts: 1 }, function (err, data) {
+    const status = data?.results?.[0]?.time !== undefined;
+    serverCache[ip] = {
+      status: status,
+      date: new Date(),
+    };
+    res.end(status ? "Online" : "Offline");
   });
-
-  const status = result.alive ? "Online" : "Offline";
-
-  serverCache[ip] = {
-    status: status,
-    date: new Date(),
-  };
-
-  res.end(status);
 });
 
 const port = process.env["PORT"] || 3000;

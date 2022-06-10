@@ -4,13 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "esbuild index.js --bundle --minify --platform=node --outdir=build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
-    "ping": "^0.4.2",
-    "polka": "^0.5.2"
+    "cors": "2.8.5",
+    "polka": "^0.5.2",
+    "tcp-ping": "^0.1.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.14.43"
   }
 }
