@@ -8,6 +8,7 @@ const ONE_MINUTE = 60 * 1000;
 const serverCache = {};
 
 app.use(cors());
+
 app.get("/server/:ip", async (req, res) => {
   const { ip } = req.params;
 
@@ -19,7 +20,7 @@ app.get("/server/:ip", async (req, res) => {
   }
 
   tcpp.ping({ address: ip, attempts: 1 }, function (err, data) {
-    const status = data?.results?.[0]?.time !== undefined;
+    const status = Boolean(data?.results?.[0]?.time);
     serverCache[ip] = {
       status: status,
       date: new Date(),
