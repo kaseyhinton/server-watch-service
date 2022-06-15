@@ -1,1 +1,1 @@
-static: ./publish/c#.exe
+static: ./publish/c#
