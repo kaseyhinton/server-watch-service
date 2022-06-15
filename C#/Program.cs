@@ -8,8 +8,6 @@ internal class Program
         var builder = WebApplication.CreateBuilder(args);
         var app = builder.Build();
 
-        var port = args[1] ?? "3000";
-
         Dictionary<IPAddress, IpAddressCacheResult> IpAddressCache =
             new Dictionary<IPAddress, IpAddressCacheResult>();
 
@@ -55,7 +53,7 @@ internal class Program
             }
         });
 
-        app.Run($"http://localhost:{port}");
+        app.Run($"http://localhost:{3000}");
     }
 }
 
