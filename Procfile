@@ -1,1 +1,1 @@
-web: npm run deploy
+worker: ./C#/bin/Debug/net6.0/publish/c#.exe --port $PORT
