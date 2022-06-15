@@ -1,1 +1,1 @@
-static: ./publish/c#
+worker: ./publish/c#
