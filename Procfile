@@ -1,1 +1,1 @@
-worker: ./publish/c#
+web: npm run deploy
