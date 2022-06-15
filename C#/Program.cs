@@ -11,8 +11,14 @@ internal class Program
         Dictionary<IPAddress, IpAddressCacheResult> IpAddressCache =
             new Dictionary<IPAddress, IpAddressCacheResult>();
 
-        app.MapGet("/server/{ipaddress}", (string ipaddress) =>
+        app.MapGet("/", (string? ipaddress) =>
         {
+            if (ipaddress == null)
+            {
+                {
+                    return "Error";
+                }
+            }
             try
             {
                 var addresses = Dns.GetHostAddresses(ipaddress);
